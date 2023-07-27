@@ -90,30 +90,35 @@ docker-compose up -d
 ```
 docker-compose ps
 ```
-You should see the following output.
 
+You should see the following output.
+```
 NAME                IMAGE                         COMMAND                  SERVICE             CREATED             STATUS                             PORTS
 gitlab-ce           gitlab/gitlab-ce:latest       "/assets/wrapper"        web                 31 seconds ago      Up 30 seconds (health: starting)   22/tcp, 0.0.0.0:8080->80/tcp, :::8080->80/tcp, 0.0.0.0:8443->443/tcp, :::8443->443/tcp
-gitlab-runner       gitlab/gitlab-runner:alpine   "/usr/bin/dumb-init …"   gitlab-runner       31 seconds ago      Up 29 seconds   
-You can also verify the GitLab listening ports using the following command.
-
+gitlab-runner       gitlab/gitlab-runner:alpine   "/usr/bin/dumb-init …"   gitlab-runner       31 seconds ago      Up 29 seconds
+```   
+**You can also verify the GitLab listening ports using the following command.**
+```
 ss -antpl | grep docker
-You will get the following output.
-
+```
+**You will get the following output.**
+```
 LISTEN 0      4096         0.0.0.0:8080       0.0.0.0:*    users:(("docker-proxy",pid=12635,fd=4))
 LISTEN 0      4096         0.0.0.0:8443       0.0.0.0:*    users:(("docker-proxy",pid=12617,fd=4))
 LISTEN 0      4096            [::]:8080          [::]:*    users:(("docker-proxy",pid=12641,fd=4))
 LISTEN 0      4096            [::]:8443          [::]:*    users:(("docker-proxy",pid=12622,fd=4))
-Step 6 – Access GitLab Web UI
+```
+***Step 6 – Access GitLab Web UI**
 At this point, GitLab is started and listening on port 8080. You can now access it using the URL http://your-server-ip:8080. You should see the GitLab login screen.
 
+![image](https://github.com/milad-baousi/GITlap/assets/113288076/1f458bed-1fd0-4558-80c6-2f4d3e571ac5)
 
-
- 
-
-Next, go back to your GitLab terminal interface and retrieve the GitLab password with the following command.
-
+** Next, go back to your GitLab terminal interface and retrieve the GitLab password with the following command.**
+```
 docker exec -it gitlab-ce grep 'Password:' /etc/gitlab/initial_root_password
-You should see the GitLab password in the following output.
-
+```
+**You should see the GitLab password in the following output.**
+```
 Password: Kx1MoTQ80iKJkA3SXatepaFCOfsi/DkLe3MXEplfERU=
+```
+![image](https://github.com/milad-baousi/GITlap/assets/113288076/1f458bed-1fd0-4558-80c6-2f4d3e571ac5)
